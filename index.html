@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliBot Pro - Java AI Chatbot | CodeAlpha Project</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #4a90e2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #ecf0f1;
+        }
+        
+        .header .project-info {
+            font-size: 1em;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #27ae60;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .feature-card i {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #ecf0f1;
+        }
+        
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* How to Run Section */
+        .how-to-run {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Technology Stack */
+        .tech-stack {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tech-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            transition: transform 0.3s;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .header .subtitle { font-size: 1.2em; }
+            .features { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .tech-icons { gap: 20px; }
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1><i class="fas fa-robot"></i> IntelliBot Pro</h1>
+            <div class="subtitle">Advanced AI Programming Assistant</div>
+            <div class="project-info">CodeAlpha Internship Project 2025 | BCA AI-ML Student</div>
+            <div class="status-badge">
+                <i class="fas fa-check-circle"></i> Java Desktop Application
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div style="text-align: center; margin: 40px 0; font-size: 1.2em; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+            <p>IntelliBot Pro is an intelligent Java-based chatbot designed to assist with programming concepts, 
+            technical questions, and educational support. Built with advanced NLP capabilities and a professional GUI interface 
+            specifically for the <strong>CodeAlpha Internship Program</strong>.</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>Natural Language Processing</h3>
+                <p>Advanced intent recognition and context understanding for intelligent conversations with sophisticated NLP algorithms.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Programming Assistant</h3>
+                <p>Comprehensive Java programming help with detailed code explanations, OOP concepts, and real-world examples.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-desktop"></i>
+                <h3>Professional GUI</h3>
+                <p>Modern Java Swing interface with intuitive user experience, professional design, and real-time interaction.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-calculator"></i>
+                <h3>Mathematical Calculator</h3>
+                <p>Built-in arithmetic problem solver for quick calculations and mathematical support with error handling.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Educational Support</h3>
+                <p>Academic guidance, study tips, career advice, and comprehensive explanations for computer science topics.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-comments"></i>
+                <h3>Intelligent Conversations</h3>
+                <p>Context-aware responses with multiple conversation flows and personalized interaction experience.</p>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="tech-stack">
+            <h2>Technology Stack</h2>
+            <div class="tech-icons">
+                <div class="tech-icon" title="Java">
+                    <i class="fab fa-java" style="color: #f89820;"></i>
+                </div>
+                <div class="tech-icon" title="Swing GUI">
+                    <i class="fas fa-window-maximize" style="color: #4a90e2;"></i>
+                </div>
+                <div class="tech-icon" title="NLP Processing">
+                    <i class="fas fa-language" style="color: #27ae60;"></i>
+                </div>
+                <div class="tech-icon" title="AI Logic">
+                    <i class="fas fa-robot" style="color: #e74c3c;"></i>
+                </div>
+                <div class="tech-icon" title="GitHub">
+                    <i class="fab fa-github" style="color: #ffffff;"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <h2><i class="fas fa-download"></i> Download & Experience IntelliBot Pro</h2>
+            <p style="margin: 20px 0; font-size: 1.1em;">This is a Java Desktop Application - Experience the full power of intelligent conversation!</p>
+            
+            <a href="https://github.com/manishcoder92/CodeAlpha_-Artificial-Intelligence-Chatbot-" class="download-btn">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+            <a href="https://github.com/manishcoder92/CodeAlpha_-Artificial-Intelligence-Chatbot-/archive/main.zip" class="download-btn">
+                <i class="fas fa-download"></i> Download ZIP
+            </a>
+            
+            <div style="margin-top: 30px; font-size: 0.9em; opacity: 0.9;">
+                <p><i class="fas fa-info-circle"></i> <strong>System Requirements:</strong> Java JDK 11+ | Windows/Mac/Linux | Any Java IDE</p>
+            </div>
+        </div>
+
+        <!-- How to Run Section -->
+        <div class="how-to-run">
+            <h2 style="text-align: center; margin-bottom: 20px;">
+                <i class="fas fa-play-circle"></i> How to Run IntelliBot Pro
+            </h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3><i class="fas fa-clone"></i> Clone Repository</h3>
+                    <p>Download the project from GitHub or clone using Git</p>
+                    <code style="background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px; display: block; margin-top: 10px;">git clone [repository-url]</code>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3><i class="fas fa-folder-open"></i> Open in IDE</h3>
+                    <p>Import project in IntelliJ IDEA, Eclipse, VS Code, or any Java IDE</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3><i class="fas fa-play"></i> Run Application</h3>
+                    <p>Execute ChatbotApplication.java file to start the application</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3><i class="fas fa-comments"></i> Start Chatting</h3>
+                    <p>Professional GUI interface will launch - Begin your intelligent conversation!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Requirements -->
+        <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; margin: 40px 0;">
+            <h2 style="text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-tasks"></i> CodeAlpha Project Requirements Fulfilled
+            </h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px; border-left: 4px solid #27ae60;">
+                    <h4><i class="fas fa-check"></i> Java-based Chatbot</h4>
+                    <p>Complete Java implementation with professional architecture</p>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px; border-left: 4px solid #27ae60;">
+                    <h4><i class="fas fa-check"></i> NLP Techniques</h4>
+                    <p>Intent recognition, tokenization, pattern matching, context analysis</p>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px; border-left: 4px solid #27ae60;">
+                    <h4><i class="fas fa-check"></i> ML/Rule-based Logic</h4>
+                    <p>Sophisticated rule-based system with pattern recognition algorithms</p>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px; border-left: 4px solid #27ae60;">
+                    <h4><i class="fas fa-check"></i> FAQ Training</h4>
+                    <p>Extensive knowledge base covering programming and educational topics</p>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px; border-left: 4px solid #27ae60;">
+                    <h4><i class="fas fa-check"></i> GUI Integration</h4>
+                    <p>Professional Swing interface with modern design and UX</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Examples -->
+        <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; margin: 40px 0;">
+            <h2 style="text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-code"></i> Sample Interactions
+            </h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #4a90e2;">Programming Help</h4>
+                    <div style="margin: 10px 0;">
+                        <strong>User:</strong> "What is Java?"<br>
+                        <strong>Bot:</strong> "Comprehensive explanation of Java programming language..."
+                    </div>
+                </div>
+                
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #4a90e2;">Mathematics</h4>
+                    <div style="margin: 10px 0;">
+                        <strong>User:</strong> "Calculate 25 * 4"<br>
+                        <strong>Bot:</strong> "The multiplication of 25.00 * 4.00 = 100.00"
+                    </div>
+                </div>
+                
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #4a90e2;">Educational Support</h4>
+                    <div style="margin: 10px 0;">
+                        <strong>User:</strong> "Explain OOP concepts"<br>
+                        <strong>Bot:</strong> "Detailed breakdown of Object-Oriented Programming..."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Developed by Manish Kumar</h3>
+            <p>BCA AI-ML Student | Parul University, Gujarat</p>
+            <p>CodeAlpha Internship Program | October 2025</p>
+            <div style="margin-top: 20px;">
+                <p><i class="fas fa-star"></i> If this project inspired you, please give it a star on GitHub! <i class="fas fa-star"></i></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
